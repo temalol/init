@@ -1,0 +1,15 @@
+#!/bin/bash
+dir=$(pwd)
+pid=$1
+cronstate=$(ls /etc/cron.d | grep shutdown | wc -l)
+if [ $cronstate -eq 0 ]
+then
+echo >> /etc/cron.d/shutdown "* * * * *"	root	$dir/03 $1
+state=0
+fi
+ps=$(ps -A | grep $pid | wc -l)
+if [ $ps -eq 0 ]
+	then
+	rm /etc/cron.d/shutdown
+	systemctl poweroff
+fi

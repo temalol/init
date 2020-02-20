@@ -1,0 +1,14 @@
+#!/bin/bash	
+var=$(pgrep -u $1 | wc -l)
+if [ $var -gt 0 ]
+then
+while [ $var -gt 0 ]
+	do 
+	pid=$(pgrep -u $1 | head -n1)
+	sudo kill $pid
+	var=$(pgrep -u $1 | wc -l)
+done
+	sudo userdel $1
+else 
+	echo "User doesn't exist or not active"
+fi

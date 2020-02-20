@@ -1,0 +1,2 @@
+ping -c1 broadcasthost
+arp -a

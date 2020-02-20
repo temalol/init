@@ -1,0 +1,1 @@
+ifconfig -l | sed 's/ /|/g' | tr '|' '\n'
